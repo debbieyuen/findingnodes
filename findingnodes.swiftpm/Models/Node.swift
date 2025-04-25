@@ -1,5 +1,5 @@
 //
-//  UINode.swift
+//  Node.swift
 //  findingnodes
 //
 //  Created by Debbie Yuen on 4/24/25.

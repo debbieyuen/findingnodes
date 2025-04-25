@@ -1,3 +1,10 @@
+//
+//  ContentView.swift
+//  findingnodes
+//
+//  Created by Debbie Yuen on 4/24/25.
+//
+
 import SwiftUI
 
 struct ContentView: View {

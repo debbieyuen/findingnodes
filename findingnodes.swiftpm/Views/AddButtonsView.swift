@@ -16,17 +16,22 @@ struct AddButtonsView: View {
         HStack {
             Button("Add New Button") {
                 let id = addDynamicNode(AnyView(
-                    Button("Dynamic Button \(currentId)") {}
+                    Button("Dynamic Button \(currentId)") {
+                        if let url = URL(string: "https://debbieyuen.github.io/heyapple/") {
+                            UIApplication.shared.open(url)
+                        }
+                    }
                         .buttonStyle(.bordered)
                 ))
                 print("Added dynamic button with ID \(id)")
             }
 
             Button("Add Button Group") {
-                for _ in 0..<3 {
-                    let id = currentId
-                    let button = AnyView(
-                        Button("Group Button \(id)") {
+                let groupStartId = currentId
+                let buttons = (0..<4).map { offset in
+                    let id = groupStartId + offset
+                    return AnyView(
+                        Button("Group \(id)") {
                             if let url = URL(string: "https://debbieyuen.github.io/heyapple/") {
                                 UIApplication.shared.open(url)
                             }
@@ -35,9 +40,18 @@ struct AddButtonsView: View {
                         .accessibilityIdentifier("\(id)")
                         .buttonStyle(.bordered)
                     )
-                    let addedId = addDynamicNode(button)
-                    print("Added group button with ID \(addedId)")
                 }
+
+                let hStack = AnyView(
+                    HStack {
+                        ForEach(0..<buttons.count, id: \.self) { index in
+                            buttons[index]
+                        }
+                    }
+                )
+
+                let groupId = addDynamicNode(hStack)
+                print("Added group button HStack with base ID \(groupId)")
             }
         }
         .buttonStyle(.borderedProminent)

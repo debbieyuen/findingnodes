@@ -81,6 +81,7 @@
 
 import SwiftUI
 
+@MainActor
 class DynamicNodeHelper: ObservableObject {
     @Published var dynamicNodes: [Node] = []
     @Published private(set) var currentId: Int = 0
@@ -105,8 +106,9 @@ class DynamicNodeHelper: ObservableObject {
                     }
                     print("Tapped group button with ID \(id)")
                 }
+                .buttonStyle(.bordered)
                 .accessibilityIdentifier("group_\(id)")
-//                .buttonStyle(.bordered)
+                
             )
             let node = Node(id: id, view: view)
             buttonNodes.append(node)

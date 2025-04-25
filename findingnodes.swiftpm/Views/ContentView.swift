@@ -25,8 +25,11 @@ struct ContentView: View {
                     )
 
                     AddButtonsView(
-                        currentId: $nodeManager.currentId,
-                        addDynamicNode: nodeManager.add
+//                        currentId: $nodeManager.currentId,
+//                        addDynamicNode: nodeManager.add
+//                        getNextId: nodeManager.getNextID,
+                        addDynamicNode: nodeManager.add,
+                        addGroupWithButtons: { nodeManager.addGroupWithButtons(url: "https://debbieyuen.github.io/heyapple/") }
                     )
 
                     DynamicNodesListView(nodes: nodeManager.dynamicNodes)
